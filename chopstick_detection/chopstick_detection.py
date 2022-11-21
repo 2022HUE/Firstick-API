@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-cap = cv.VideoCapture("C:/Users/sinji/Desktop/firstick/src/wood05.mp4")
+cap = cv.VideoCapture("src/wood05.mp4")
 cnt = 1
 
 # 젓가락 전체 길이와 젓가락 쥔 앞 부분 길이 확인해서 1/5 지점 이면 True를 출력하는 코드 >> 값 수정 + 1/5 지점에 점 찍는 것까지
