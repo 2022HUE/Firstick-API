@@ -8,7 +8,10 @@ while True :
     ret, frame = cap.read()
     resize = cv.resize(frame, (0,0), fx = 0.5, fy = 0.5, interpolation = cv.INTER_AREA)
 
-    gray = cv.cvtColor(resize, cv.COLOR_BGR2GRAY)
+    x = 0; y = 200; w = 1500; h = 500
+    roi = resize[y:y+h, x:x+w]
+
+    gray = cv.cvtColor(roi, cv.COLOR_BGR2GRAY)
     blur = cv.GaussianBlur(gray, (3, 3), 0)
     canny = cv.Canny(blur, 1200, 4000, apertureSize = 5, L2gradient = True)
 
@@ -20,11 +23,12 @@ while True :
         for i in line :
             (a11, b11, a12, b12) = i[0]
             if abs(b11 - b12) < 70 :
-                cv.line(resize, (a11, b11), (a12, b12), (0, 0, 255), 2)
+                cv.line(roi, (a11, b11), (a12, b12), (0, 0, 255), 2)
                 whole = a12 - a11
 
     cv.imshow("canny_", canny)
     cv.imshow("원본", resize)
+    cv.imshow("roi", roi)
 
     key = cv.waitKey(5)
     if key == 27 :
