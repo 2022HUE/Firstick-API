@@ -10,10 +10,10 @@ while True :
 
     gray = cv.cvtColor(resize, cv.COLOR_BGR2GRAY)
     blur = cv.GaussianBlur(gray, (3, 3), 0)
-    canny = cv.Canny(blur, 800, 2000, apertureSize = 5, L2gradient = True)
+    canny = cv.Canny(blur, 1200, 4000, apertureSize = 5, L2gradient = True)
 
     # 젓가락 전체
-    line = cv.HoughLinesP(canny, 0.2, np.pi / 180 , 50, minLineLength = 400, maxLineGap = 150)
+    line = cv.HoughLinesP(canny, 0.2, np.pi / 180 , 50, minLineLength = 300, maxLineGap = 150)
 
     # 젓가락 전체 출력 / 빨간색
     if line is not None :
@@ -23,6 +23,7 @@ while True :
                 cv.line(resize, (a11, b11), (a12, b12), (0, 0, 255), 2)
                 whole = a12 - a11
 
+    cv.imshow("canny_", canny)
     cv.imshow("원본", resize)
 
     key = cv.waitKey(5)
