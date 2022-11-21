@@ -8,7 +8,7 @@ while True :
     ret, frame = cap.read()
     resize = cv.resize(frame, (0,0), fx = 0.5, fy = 0.5, interpolation = cv.INTER_AREA)
 
-    x = 0; y = 200; w = 1500; h = 500
+    x = 0; y = 200; w = 1500; h = 350
     roi = resize[y:y+h, x:x+w]
 
     gray = cv.cvtColor(roi, cv.COLOR_BGR2GRAY)
@@ -25,16 +25,19 @@ while True :
             if abs(b11 - b12) < 70 :
                 cv.line(roi, (a11, b11), (a12, b12), (0, 0, 255), 2)
 
-            # print(b11, b12)
-            
-            if (b12 - b11) > 10 :
+            if b12 > b11 :
                 print("open")
             else :
                 print("close")
+            
+            # if (b12 - b11) > 0 :
+            #     print("open")
+            # else :
+            #     print("close")
 
-    cv.imshow("canny_", canny)
+    # cv.imshow("canny_", canny)
     cv.imshow("원본", resize)
-    cv.imshow("roi", roi)
+    # cv.imshow("roi", roi)
 
     key = cv.waitKey(50)
     if key == 27 :
