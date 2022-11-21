@@ -24,12 +24,18 @@ while True :
             (a11, b11, a12, b12) = i[0]
             if abs(b11 - b12) < 70 :
                 cv.line(roi, (a11, b11), (a12, b12), (0, 0, 255), 2)
-                whole = a12 - a11
+
+            # print(b11, b12)
+            
+            if (b12 - b11) > 10 :
+                print("open")
+            else :
+                print("close")
 
     cv.imshow("canny_", canny)
     cv.imshow("원본", resize)
     cv.imshow("roi", roi)
 
-    key = cv.waitKey(5)
+    key = cv.waitKey(50)
     if key == 27 :
         break
