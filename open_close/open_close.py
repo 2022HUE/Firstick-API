@@ -30,7 +30,7 @@ while True :
             else :
                 print("close")
             
-            # if (b12 - b11) > 0 :
+            # if b12 >=  b11 :
             #     print("open")
             # else :
             #     print("close")
